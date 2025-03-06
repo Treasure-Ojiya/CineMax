@@ -4,16 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CineMax | Get Movie Info And Updates</title>
-    <link rel="stylesheet" href="styles/index.css" />
+    <!-- <link rel="stylesheet" href="styles/index.css" /> -->
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <script type="module" src="script/index.js"></script>
   </head>
   <body class="bg-gray-900 text-white">
     <!-- Navbar -->
     <nav class="bg-gray-800 p-4">
       <div class="container mx-auto flex justify-between items-center">
-        <a href="index.html" class="text-xl font-bold">CineMax</a>
+        <a href="#" onclick="navigate(event, 'home')" class="text-xl font-bold"
+          >CineMax</a
+        >
         <ul class="flex space-x-4">
           <li>
             <a
@@ -50,7 +51,6 @@
         </ul>
       </div>
     </nav>
-
     <div id="content" class="container mx-auto py-12 text-center">
       <h2 class="text-3xl font-bold">Loading...</h2>
     </div>
@@ -104,5 +104,7 @@
     <footer class="bg-gray-800 p-4 text-center mt-12">
       <p>&copy; 2025 CineMax. All rights reserved.</p>
     </footer>
+
+    <script type="module" src="script/index.js"></script>
   </body>
 </html>

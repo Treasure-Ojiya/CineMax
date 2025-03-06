@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CineMax | Get Movie Info And Updates</title>
+    <link rel="stylesheet" href="styles/index.css" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="script/index.js"></script>
+  </head>
+  <body class="bg-gray-900 text-white">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="index.html" class="text-xl font-bold">CineMax</a>
+        <ul class="flex space-x-4">
+          <li>
+            <a
+              href="#"
+              onclick="navigate(event, 'home')"
+              class="hover:text-gray-400"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="navigate(event, 'movies')"
+              class="hover:text-gray-400"
+              >Movies</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="navigate(event, 'genres')"
+              class="hover:text-gray-400"
+              >Genres</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="navigate(event, 'contact')"
+              class="hover:text-gray-400"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="content" class="container mx-auto py-12 text-center">
+      <h2 class="text-3xl font-bold">Loading...</h2>
+    </div>
+
+    <!-- Hero Section -->
+    <!-- <header
+      class="relative h-screen bg-cover bg-center flex items-center justify-center"
+      style="
+        background-image: url('https://source.unsplash.com/1600x900/?movie');
+      "
+    >
+      <div class="bg-black bg-opacity-50 p-8 rounded-lg text-center">
+        <h1 class="text-4xl font-bold">Welcome to CineMax</h1>
+        <p class="mt-2 text-lg">
+          Your ultimate destination for movie info and updates
+        </p>
+        <a
+          href="#movies"
+          class="mt-4 inline-block px-6 py-3 bg-red-600 hover:bg-red-700 rounded-lg"
+          >Explore Now</a
+        >
+      </div>
+    </header> -->
+
+    <!-- Movies Grid -->
+    <!-- <section id="movies" class="container mx-auto py-12">
+      <h2 class="text-3xl font-bold mb-6 text-center">Popular Movies</h2>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+      > -->
+    <!-- Movie Card -->
+    <!-- <div class="bg-gray-800 p-4 rounded-lg">
+          <img
+            src="https://source.unsplash.com/300x400/?cinema"
+            alt="Movie"
+            class="w-full rounded-lg"
+          />
+          <h3 class="text-xl font-semibold mt-4">Movie Title</h3>
+          <p class="text-gray-400 text-sm">2024 | Action, Adventure</p>
+          <button
+            class="mt-2 w-full bg-red-600 hover:bg-red-700 py-2 rounded-lg"
+          >
+            Watch Now
+          </button>
+        </div> -->
+    <!-- Repeat similar movie cards -->
+    <!-- </div>
+    </section> -->
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 p-4 text-center mt-12">
+      <p>&copy; 2025 CineMax. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

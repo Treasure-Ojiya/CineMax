@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CineMax | Get Movie Info And Updates</title>
     <!-- <link rel="stylesheet" href="styles/index.css" /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
 
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
@@ -24,13 +28,34 @@
               >Home</a
             >
           </li>
-          <li>
-            <a
-              href="#"
-              onclick="navigate(event, 'movies')"
-              class="hover:text-gray-400"
-              >Movies</a
+          <li class="relative group">
+            <button class="hover:text-gray-400 focus:outline-none">
+              Categories <i class="fas fa-angle-down"></i>
+            </button>
+
+            <!-- Dropdown -->
+            <div
+              class="absolute left-0 mt-2 w-48 bg-gray-700 rounded-lg shadow-lg hidden group-hover:block"
             >
+              <a
+                href="#"
+                onclick="navigate(event, 'movies')"
+                class="block px-4 py-2 hover:bg-gray-600"
+                >Movies</a
+              >
+              <a
+                href="#"
+                onclick="navigate(event, 'series')"
+                class="block px-4 py-2 hover:bg-gray-600"
+                >Series</a
+              >
+              <a
+                href="#"
+                onclick="navigate(event, 'anime')"
+                class="block px-4 py-2 hover:bg-gray-600"
+                >Anime</a
+              >
+            </div>
           </li>
           <li>
             <a

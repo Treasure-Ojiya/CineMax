@@ -1,5 +1,6 @@
 import axios from "https://cdn.skypack.dev/axios"; // Import Axios
 import { moviePage } from "./movies.js";
+import { seriesHollyWood, seriesKDrama } from "./series.js";
 
 // Define routes with content
 const routes = {
@@ -11,6 +12,7 @@ const routes = {
             </div>
          </header>`,
   movies: moviePage,
+  series: `${seriesHollyWood} ${seriesKDrama}`, // 🔹 Combined both sections here
   genres: `<section class='container mx-auto py-12'>
               <h2 class='text-3xl font-bold mb-6 text-center'>Genres</h2>
               <p class='text-lg text-center'>Explore movies by genre.</p>
@@ -27,9 +29,11 @@ function navigate(event, route) {
   window.history.pushState({}, "", route); // Update URL
   document.getElementById("content").innerHTML = routes[route]; // Load new content
 
-  // If navigating to movies, fetch movie data
+  // Fetch data based on route
   if (route === "movies") {
     fetchMovies();
+  } else if (route === "series") {
+    fetchSeries();
   }
 }
 
@@ -43,26 +47,78 @@ function fetchMovies() {
       const movies = response.data.results;
       const movieList = document.getElementById("movie-list");
 
-      movieList.innerHTML = movies
-        .map(
-          (movie) => `
-        <div class="bg-gray-800 p-4 rounded-lg">
-          <img src="https://image.tmdb.org/t/p/w300${movie.poster_path}" alt="${movie.title}" class="w-full rounded-lg"/>
-          <h3 class="text-xl font-semibold mt-4">${movie.title}</h3>
-          <p class="text-gray-400 text-sm">${movie.release_date} | ${movie.vote_average}/10</p>
-          <button class="mt-2 w-full bg-red-600 hover:bg-red-700 py-2 rounded-lg">Watch Now</button>
-        </div>
-      `
-        )
-        .join("");
+      if (movieList) {
+        movieList.innerHTML = movies
+          .map(
+            (movie) => `
+            <div class="bg-gray-800 p-4 rounded-lg">
+              <img src="https://image.tmdb.org/t/p/w300${movie.poster_path}" alt="${movie.title}" class="w-full rounded-lg"/>
+              <h3 class="text-xl font-semibold mt-4">${movie.title}</h3>
+              <p class="text-gray-400 text-sm">${movie.release_date} | ${movie.vote_average}/10</p>
+              <button class="mt-2 w-full bg-red-600 hover:bg-red-700 py-2 rounded-lg">Watch Now</button>
+            </div>
+          `
+          )
+          .join("");
+      }
     })
     .catch((error) => console.error("Error fetching movies:", error));
+}
+
+// Fetch series from API and update DOM
+function fetchSeries() {
+  axios
+    .get(
+      "https://api.themoviedb.org/3/tv/popular?api_key=018658938c2d57aeb0fedfb14c6c0eae&language=en-US&page=1"
+    )
+    .then((response) => {
+      const series = response.data.results;
+      const hollywoodList = document.getElementById("series-hollywood-list");
+      const kdramaList = document.getElementById("series-kdrama-list");
+
+      if (hollywoodList) {
+        hollywoodList.innerHTML = series
+          .slice(0, 10) // First 10 as Hollywood
+          .map(
+            (listSeries) => `
+            <div class="bg-gray-800 p-4 rounded-lg">
+              <img src="https://image.tmdb.org/t/p/w300${listSeries.poster_path}" alt="${listSeries.name}" class="w-full rounded-lg"/>
+              <h3 class="text-xl font-semibold mt-4">${listSeries.name}</h3>
+              <p class="text-gray-400 text-sm">${listSeries.first_air_date} | ${listSeries.vote_average}/10</p>
+              <button class="mt-2 w-full bg-red-600 hover:bg-red-700 py-2 rounded-lg">Watch Now</button>
+            </div>
+          `
+          )
+          .join("");
+      }
+
+      if (kdramaList) {
+        kdramaList.innerHTML = series
+          .slice(10, 20) // Next 10 as K-Drama
+          .map(
+            (listSeries) => `
+            <div class="bg-gray-800 p-4 rounded-lg">
+              <img src="https://image.tmdb.org/t/p/w300${listSeries.poster_path}" alt="${listSeries.name}" class="w-full rounded-lg"/>
+              <h3 class="text-xl font-semibold mt-4">${listSeries.name}</h3>
+              <p class="text-gray-400 text-sm">${listSeries.first_air_date} | ${listSeries.vote_average}/10</p>
+              <button class="mt-2 w-full bg-red-600 hover:bg-red-700 py-2 rounded-lg">Watch Now</button>
+            </div>
+          `
+          )
+          .join("");
+      }
+    })
+    .catch((error) => console.error("Error fetching series:", error));
 }
 
 // Handle browser back/forward buttons
 window.onpopstate = () => {
   const path = window.location.pathname.substring(1) || "home";
   document.getElementById("content").innerHTML = routes[path];
+
+  // Reload data when using back/forward navigation
+  if (path === "movies") fetchMovies();
+  if (path === "series") fetchSeries();
 };
 
 // Load home page initially
